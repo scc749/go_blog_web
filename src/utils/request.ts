@@ -112,7 +112,7 @@ const handleSpecificError = (status: number, error: AxiosError) => {
         cancelButtonText: '取消',
     }).then(() => {
         const userStore = useUserStore()
-        userStore.$reset()
+        userStore.reset()
         const layoutStore = useLayoutStore()
         localStorage.clear()
         router.push({name: 'index', replace: true}).then(() => {

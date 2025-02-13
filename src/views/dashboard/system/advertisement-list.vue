@@ -126,7 +126,7 @@
 
     <el-pagination
         :current-page="page"
-        :page-size="pageSize"
+        :page-size="page_size"
         :page-sizes="[10, 30, 50, 100]"
         :total="total"
         layout="total, sizes, prev, pager, next, jumper"
@@ -154,7 +154,7 @@ import AdvertisementUpdateForm from "@/components/forms/AdvertisementUpdateForm.
 const multipleAdvertisementTableRef = ref()
 const advertisementTableData = ref<Advertisement[]>()
 const page = ref(1)
-const pageSize = ref(10)
+const page_size = ref(10)
 const total = ref(0)
 
 const layoutStore = useLayoutStore()
@@ -199,7 +199,7 @@ const advertisementListRequest = reactive<AdvertisementListRequest>({
   title: null,
   content: null,
   page: 1,
-  pageSize: 10,
+  page_size: 10,
 })
 
 const route = useRoute()
@@ -209,7 +209,7 @@ onMounted(() => {
   advertisementListRequest.title = route.query.title as string || null
   advertisementListRequest.content = route.query.content as string || null
   advertisementListRequest.page = Number(route.query.page) || 1
-  advertisementListRequest.pageSize = Number(route.query.pageSize) || 10
+  advertisementListRequest.page_size = Number(route.query.page_size) || 10
 })
 
 const getAdvertisementTableData = async () => {
@@ -221,7 +221,7 @@ const getAdvertisementTableData = async () => {
   }
 
   advertisementListRequest.page = page.value
-  advertisementListRequest.pageSize = pageSize.value
+  advertisementListRequest.page_size = page_size.value
 
   const table = await advertisementList(advertisementListRequest)
 
@@ -235,7 +235,7 @@ const getAdvertisementTableData = async () => {
         title: advertisementListRequest.title,
         content: advertisementListRequest.content,
         page: advertisementListRequest.page,
-        pageSize: advertisementListRequest.pageSize,
+        page_size: advertisementListRequest.page_size,
       },
     })
   }
@@ -245,7 +245,7 @@ watch(() => route.query, (newQuery) => {
   advertisementListRequest.title = newQuery.title as string || null
   advertisementListRequest.content = newQuery.content as string || null
   advertisementListRequest.page = Number(newQuery.page) || 1
-  advertisementListRequest.pageSize = Number(newQuery.pageSize) || 10
+  advertisementListRequest.page_size = Number(newQuery.page_size) || 10
 }, {immediate: true})
 
 nextTick(() => {
@@ -291,7 +291,7 @@ watch(() => layoutStore.state.shouldRefreshAdvertisementTable, (newVal) => {
 })
 
 const handleSizeChange = (val: number) => {
-  pageSize.value = val
+  page_size.value = val
   getAdvertisementTableData()
 }
 

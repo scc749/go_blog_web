@@ -129,7 +129,7 @@
 
     <el-pagination
         :current-page="page"
-        :page-size="pageSize"
+        :page-size="page_size"
         :page-sizes="[10, 30, 50, 100]"
         :total="total"
         layout="total, sizes, prev, pager, next, jumper"
@@ -158,7 +158,7 @@ import {type Tag, useTagStore} from "@/stores/tag";
 const multipleArticleTableRef = ref()
 const articleTableData = ref<Hit<Article>[]>()
 const page = ref(1)
-const pageSize = ref(10)
+const page_size = ref(10)
 const total = ref(0)
 
 const tagStore = useTagStore()
@@ -207,7 +207,7 @@ const articleListRequest = reactive<ArticleListRequest>({
   category: null,
   abstract: null,
   page: 1,
-  pageSize: 10,
+  page_size: 10,
 })
 
 const route = useRoute()
@@ -218,7 +218,7 @@ onMounted(() => {
   articleListRequest.category = route.query.category as string || null
   articleListRequest.abstract = route.query.abstract as string || null
   articleListRequest.page = Number(route.query.page) || 1
-  articleListRequest.pageSize = Number(route.query.pageSize) || 10
+  articleListRequest.page_size = Number(route.query.page_size) || 10
 })
 
 const getArticleTableData = async () => {
@@ -233,7 +233,7 @@ const getArticleTableData = async () => {
   }
 
   articleListRequest.page = page.value
-  articleListRequest.pageSize = pageSize.value
+  articleListRequest.page_size = page_size.value
 
   const table = await articleList(articleListRequest)
 
@@ -248,7 +248,7 @@ const getArticleTableData = async () => {
         category: articleListRequest.category,
         abstract: articleListRequest.abstract,
         page: articleListRequest.page,
-        pageSize: articleListRequest.pageSize,
+        page_size: articleListRequest.page_size,
       },
     })
   }
@@ -259,7 +259,7 @@ watch(() => route.query, (newQuery) => {
   articleListRequest.category = newQuery.category as string || null
   articleListRequest.abstract = newQuery.abstract as string || null
   articleListRequest.page = Number(newQuery.page) || 1
-  articleListRequest.pageSize = Number(newQuery.pageSize) || 10
+  articleListRequest.page_size = Number(newQuery.page_size) || 10
 }, {immediate: true})
 
 nextTick(() => {
@@ -305,7 +305,7 @@ watch(() => layoutStore.state.shouldRefreshArticleTable, (newVal) => {
 })
 
 const handleSizeChange = (val: number) => {
-  pageSize.value = val
+  page_size.value = val
   getArticleTableData()
 }
 

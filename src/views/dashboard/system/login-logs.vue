@@ -52,7 +52,7 @@
 
     <el-pagination
         :current-page="page"
-        :page-size="pageSize"
+        :page-size="page_size"
         :page-sizes="[10, 30, 50, 100]"
         :total="total"
         layout="total, sizes, prev, pager, next, jumper"
@@ -74,13 +74,13 @@ import UserCard from "@/components/widgets/UserCard.vue";
 
 const userLoginTableData = ref<Login[]>()
 const page = ref(1)
-const pageSize = ref(10)
+const page_size = ref(10)
 const total = ref(0)
 
 const userLoginListRequest = reactive<UserLoginListRequest>({
   uuid: null,
   page: 1,
-  pageSize: 10,
+  page_size: 10,
 })
 
 const route = useRoute()
@@ -89,7 +89,7 @@ const router = useRouter()
 onMounted(() => {
   userLoginListRequest.uuid = route.query.uuid as string || null
   userLoginListRequest.page = Number(route.query.page) || 1
-  userLoginListRequest.pageSize = Number(route.query.pageSize) || 10
+  userLoginListRequest.page_size = Number(route.query.page_size) || 10
 })
 
 const getUserLoginTableData = async () => {
@@ -98,7 +98,7 @@ const getUserLoginTableData = async () => {
   }
 
   userLoginListRequest.page = page.value
-  userLoginListRequest.pageSize = pageSize.value
+  userLoginListRequest.page_size = page_size.value
 
   const table = await userLoginList(userLoginListRequest)
 
@@ -111,7 +111,7 @@ const getUserLoginTableData = async () => {
       query: {
         uuid: userLoginListRequest.uuid,
         page: userLoginListRequest.page,
-        pageSize: userLoginListRequest.pageSize,
+        page_size: userLoginListRequest.page_size,
       },
     })
   }
@@ -120,7 +120,7 @@ const getUserLoginTableData = async () => {
 watch(() => route.query, (newQuery) => {
   userLoginListRequest.uuid = newQuery.uuid as string || null
   userLoginListRequest.page = Number(newQuery.page) || 1
-  userLoginListRequest.pageSize = Number(newQuery.pageSize) || 10
+  userLoginListRequest.page_size = Number(newQuery.page_size) || 10
 }, {immediate: true})
 
 nextTick(() => {
@@ -134,7 +134,7 @@ const getTime = (date: Date): string => {
 
 
 const handleSizeChange = (val: number) => {
-  pageSize.value = val
+  page_size.value = val
   getUserLoginTableData()
 }
 

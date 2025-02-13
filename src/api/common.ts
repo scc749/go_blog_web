@@ -6,7 +6,7 @@ export interface Model {
 
 export interface PageInfo {
     page: number;
-    pageSize: number;
+    page_size: number;
 }
 
 export interface PageResult<T> {

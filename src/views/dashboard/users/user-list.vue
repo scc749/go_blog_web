@@ -83,7 +83,7 @@
     </el-dialog>
     <el-pagination
         :current-page="page"
-        :page-size="pageSize"
+        :page-size="page_size"
         :page-sizes="[10, 30, 50, 100]"
         :total="total"
         layout="total, sizes, prev, pager, next, jumper"
@@ -102,7 +102,7 @@ import {type User, userFreeze, userList, type UserListRequest, type UserOperatio
 
 const userTableData = ref<User[]>()
 const page = ref(1)
-const pageSize = ref(10)
+const page_size = ref(10)
 const total = ref(0)
 
 const layoutStore = useLayoutStore()
@@ -126,7 +126,7 @@ const userListRequest = reactive<UserListRequest>({
   uuid: null,
   register:null,
   page: 1,
-  pageSize: 10,
+  page_size: 10,
 })
 
 const route = useRoute()
@@ -136,7 +136,7 @@ onMounted(() => {
   userListRequest.uuid = route.query.uuid as string || null
   userListRequest.register = route.query.register as string || null
   userListRequest.page = Number(route.query.page) || 1
-  userListRequest.pageSize = Number(route.query.pageSize) || 10
+  userListRequest.page_size = Number(route.query.page_size) || 10
 })
 
 const getUserTableData = async () => {
@@ -148,7 +148,7 @@ const getUserTableData = async () => {
   }
 
   userListRequest.page = page.value
-  userListRequest.pageSize = pageSize.value
+  userListRequest.page_size = page_size.value
 
   const table = await userList(userListRequest)
 
@@ -162,7 +162,7 @@ const getUserTableData = async () => {
         uuid: userListRequest.uuid,
         register: userListRequest.register,
         page: userListRequest.page,
-        pageSize: userListRequest.pageSize,
+        page_size: userListRequest.page_size,
       },
     })
   }
@@ -172,7 +172,7 @@ watch(() => route.query, (newQuery) => {
   userListRequest.uuid = newQuery.uuid as string || null
   userListRequest.register = newQuery.register as string || null
   userListRequest.page = Number(newQuery.page) || 1
-  userListRequest.pageSize = Number(newQuery.pageSize) || 10
+  userListRequest.page_size = Number(newQuery.page_size) || 10
 }, {immediate: true})
 
 nextTick(() => {
@@ -212,7 +212,7 @@ watch(() => layoutStore.state.shouldRefreshUserTable, (newVal) => {
 })
 
 const handleSizeChange = (val: number) => {
-  pageSize.value = val
+  page_size.value = val
   getUserTableData()
 }
 

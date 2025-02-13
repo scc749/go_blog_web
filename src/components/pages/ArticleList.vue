@@ -81,7 +81,7 @@
 
     <el-pagination
         :current-page="page"
-        :page-size="pageSize"
+        :page-size="page_size"
         :page-sizes="[10, 30, 50, 100]"
         :total="total"
         layout="total, sizes, prev, pager, next, jumper"
@@ -103,7 +103,7 @@ const articleSearchRequest = reactive<ArticleSearchRequest>({
   sort: "",
   order: "desc",
   page: 1,
-  pageSize: 10,
+  page_size: 10,
 })
 
 const categoryArr = ref<string[]>([])
@@ -150,13 +150,13 @@ const getArticleTags = async () => {
 getArticleTags()
 
 const page = ref(1)
-const pageSize = ref(10)
+const page_size = ref(10)
 const total = ref(0)
 const articleTableData = ref<Hit<Article>[]>()
 
 const getArticleSearchTableData = async () => {
   articleSearchRequest.page = page.value;
-  articleSearchRequest.pageSize = pageSize.value;
+  articleSearchRequest.page_size = page_size.value;
 
   const table = await articleSearch(articleSearchRequest)
 
@@ -177,7 +177,7 @@ const handleArticleJumps = (id: string) => {
 }
 
 const handleSizeChange = (val: number) => {
-  pageSize.value = val
+  page_size.value = val
   getArticleSearchTableData()
 }
 

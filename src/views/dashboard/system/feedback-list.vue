@@ -99,7 +99,7 @@
 
     <el-pagination
         :current-page="page"
-        :page-size="pageSize"
+        :page-size="page_size"
         :page-sizes="[10, 30, 50, 100]"
         :total="total"
         layout="total, sizes, prev, pager, next, jumper"
@@ -123,7 +123,7 @@ import UserCardPopover from "@/components/common/UserCardPopover.vue";
 const multipleFeedbackTableRef = ref()
 const feedbackTableData = ref<Feedback[]>()
 const page = ref(1)
-const pageSize = ref(10)
+const page_size = ref(10)
 const total = ref(0)
 
 const layoutStore = useLayoutStore()
@@ -154,7 +154,7 @@ const handleBulkDelete = async (ids: number[]) => {
 
 const feedbackListRequest = reactive<PageInfo>({
   page: 1,
-  pageSize: 10,
+  page_size: 10,
 })
 
 const route = useRoute()
@@ -162,12 +162,12 @@ const router = useRouter()
 
 onMounted(() => {
   feedbackListRequest.page = Number(route.query.page) || 1
-  feedbackListRequest.pageSize = Number(route.query.pageSize) || 10
+  feedbackListRequest.page_size = Number(route.query.page_size) || 10
 })
 
 const getFeedbackTableData = async () => {
   feedbackListRequest.page = page.value
-  feedbackListRequest.pageSize = pageSize.value
+  feedbackListRequest.page_size = page_size.value
 
   const table = await feedbackList(feedbackListRequest)
 
@@ -179,7 +179,7 @@ const getFeedbackTableData = async () => {
       path: router.currentRoute.value.path,
       query: {
         page: feedbackListRequest.page,
-        pageSize: feedbackListRequest.pageSize,
+        page_size: feedbackListRequest.page_size,
       },
     })
   }
@@ -187,7 +187,7 @@ const getFeedbackTableData = async () => {
 
 watch(() => route.query, (newQuery) => {
   feedbackListRequest.page = Number(newQuery.page) || 1
-  feedbackListRequest.pageSize = Number(newQuery.pageSize) || 10
+  feedbackListRequest.page_size = Number(newQuery.page_size) || 10
 }, {immediate: true})
 
 nextTick(() => {
@@ -238,7 +238,7 @@ const getTime = (date: Date): string => {
 }
 
 const handleSizeChange = (val: number) => {
-  pageSize.value = val
+  page_size.value = val
   getFeedbackTableData()
 }
 

@@ -32,7 +32,7 @@
 
     <el-pagination
         :current-page="page"
-        :page-size="pageSize"
+        :page-size="page_size"
         :page-sizes="[10, 30, 50, 100]"
         :total="total"
         layout="total, sizes, prev, pager, next, jumper"
@@ -52,12 +52,12 @@ import {articleLikesList} from "@/api/article";
 
 const articleLikesListData = ref<Hit<Article>[]>()
 const page = ref(1)
-const pageSize = ref(10)
+const page_size = ref(10)
 const total = ref(0)
 
 const articleLikesListRequest = reactive<PageInfo>({
   page: 1,
-  pageSize: 10,
+  page_size: 10,
 })
 
 const route = useRoute()
@@ -65,12 +65,12 @@ const router = useRouter()
 
 onMounted(() => {
   articleLikesListRequest.page = Number(route.query.page) || 1
-  articleLikesListRequest.pageSize = Number(route.query.pageSize) || 10
+  articleLikesListRequest.page_size = Number(route.query.page_size) || 10
 })
 
 const getArticleLikesListData = async () => {
   articleLikesListRequest.page = page.value
-  articleLikesListRequest.pageSize = pageSize.value
+  articleLikesListRequest.page_size = page_size.value
 
   const table = await articleLikesList(articleLikesListRequest)
 
@@ -82,7 +82,7 @@ const getArticleLikesListData = async () => {
       path: router.currentRoute.value.path,
       query: {
         page: articleLikesListRequest.page,
-        pageSize: articleLikesListRequest.pageSize,
+        page_size: articleLikesListRequest.page_size,
       },
     })
   }
@@ -90,7 +90,7 @@ const getArticleLikesListData = async () => {
 
 watch(() => route.query, (newQuery) => {
   articleLikesListRequest.page = Number(newQuery.page) || 1
-  articleLikesListRequest.pageSize = Number(newQuery.pageSize) || 10
+  articleLikesListRequest.page_size = Number(newQuery.page_size) || 10
 }, {immediate: true})
 
 nextTick(() => {
@@ -98,7 +98,7 @@ nextTick(() => {
 })
 
 const handleSizeChange = (val: number) => {
-  pageSize.value = val
+  page_size.value = val
   getArticleLikesListData()
 }
 

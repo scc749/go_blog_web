@@ -113,7 +113,7 @@
 
     <el-pagination
         :current-page="page"
-        :page-size="pageSize"
+        :page-size="page_size"
         :page-sizes="[10, 30, 50, 100]"
         :total="total"
         layout="total, sizes, prev, pager, next, jumper"
@@ -134,7 +134,7 @@ import {type Image, imageDelete, type ImageDeleteRequest, imageList, type ImageL
 const multipleImageTableRef = ref()
 const imageTableData = ref<Image[]>()
 const page = ref(1)
-const pageSize = ref(10)
+const page_size = ref(10)
 const total = ref(0)
 
 const layoutStore = useLayoutStore()
@@ -220,7 +220,7 @@ const imageListRequest = reactive<ImageListRequest>({
   category: null,
   storage: null,
   page: 1,
-  pageSize: 10,
+  page_size: 10,
 })
 
 const route = useRoute()
@@ -231,7 +231,7 @@ onMounted(() => {
   imageListRequest.category = route.query.category as string || null
   imageListRequest.storage = route.query.storage as string || null
   imageListRequest.page = Number(route.query.page) || 1
-  imageListRequest.pageSize = Number(route.query.pageSize) || 10
+  imageListRequest.page_size = Number(route.query.page_size) || 10
 })
 
 const getImageTableData = async () => {
@@ -246,7 +246,7 @@ const getImageTableData = async () => {
   }
 
   imageListRequest.page = page.value
-  imageListRequest.pageSize = pageSize.value
+  imageListRequest.page_size = page_size.value
 
   const table = await imageList(imageListRequest)
 
@@ -261,7 +261,7 @@ const getImageTableData = async () => {
         content: imageListRequest.category,
         storage: imageListRequest.storage,
         page: imageListRequest.page,
-        pageSize: imageListRequest.pageSize,
+        page_size: imageListRequest.page_size,
       },
     })
   }
@@ -272,7 +272,7 @@ watch(() => route.query, (newQuery) => {
   imageListRequest.category = newQuery.category as string || null
   imageListRequest.storage = newQuery.storage as string || null
   imageListRequest.page = Number(newQuery.page) || 1
-  imageListRequest.pageSize = Number(newQuery.pageSize) || 10
+  imageListRequest.page_size = Number(newQuery.page_size) || 10
 }, {immediate: true})
 
 nextTick(() => {
@@ -306,7 +306,7 @@ watch(() => layoutStore.state.shouldRefreshImageTable, (newVal) => {
 })
 
 const handleSizeChange = (val: number) => {
-  pageSize.value = val
+  page_size.value = val
   getImageTableData()
 }
 

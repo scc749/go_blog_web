@@ -97,7 +97,7 @@
 
     <el-pagination
         :current-page="page"
-        :page-size="pageSize"
+        :page-size="page_size"
         :page-sizes="[10, 30, 50, 100]"
         :total="total"
         layout="total, sizes, prev, pager, next, jumper"
@@ -125,7 +125,7 @@ import {MdPreview} from "md-editor-v3";
 const multipleCommentTableRef = ref()
 const commentTableData = ref<Comment[]>()
 const page = ref(1)
-const pageSize = ref(10)
+const page_size = ref(10)
 const total = ref(0)
 
 const layoutStore = useLayoutStore()
@@ -159,7 +159,7 @@ const commentListRequest = reactive<CommentListRequest>({
   user_uuid: null,
   content: null,
   page: 1,
-  pageSize: 10,
+  page_size: 10,
 })
 
 const route = useRoute()
@@ -170,7 +170,7 @@ onMounted(() => {
   commentListRequest.user_uuid = route.query.user_uuid as string || null
   commentListRequest.content = route.query.content as string || null
   commentListRequest.page = Number(route.query.page) || 1
-  commentListRequest.pageSize = Number(route.query.pageSize) || 10
+  commentListRequest.page_size = Number(route.query.page_size) || 10
 })
 
 const getCommentTableData = async () => {
@@ -185,7 +185,7 @@ const getCommentTableData = async () => {
   }
 
   commentListRequest.page = page.value
-  commentListRequest.pageSize = pageSize.value
+  commentListRequest.page_size = page_size.value
 
   const table = await commentList(commentListRequest)
 
@@ -200,7 +200,7 @@ const getCommentTableData = async () => {
         user_uuid: commentListRequest.user_uuid,
         content: commentListRequest.content,
         page: commentListRequest.page,
-        pageSize: commentListRequest.pageSize,
+        page_size: commentListRequest.page_size,
       },
     })
   }
@@ -211,7 +211,7 @@ watch(() => route.query, (newQuery) => {
   commentListRequest.user_uuid = newQuery.user_uuid as string || null
   commentListRequest.content = newQuery.content as string || null
   commentListRequest.page = Number(newQuery.page) || 1
-  commentListRequest.pageSize = Number(newQuery.pageSize) || 10
+  commentListRequest.page_size = Number(newQuery.page_size) || 10
 }, {immediate: true})
 
 nextTick(() => {
@@ -245,7 +245,7 @@ watch(() => layoutStore.state.shouldRefreshCommentTable, (newVal) => {
 })
 
 const handleSizeChange = (val: number) => {
-  pageSize.value = val
+  page_size.value = val
   getCommentTableData()
 }
 

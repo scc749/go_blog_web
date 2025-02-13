@@ -126,7 +126,7 @@
 
     <el-pagination
         :current-page="page"
-        :page-size="pageSize"
+        :page-size="page_size"
         :page-sizes="[10, 30, 50, 100]"
         :total="total"
         layout="total, sizes, prev, pager, next, jumper"
@@ -177,7 +177,7 @@ const friendLinkCreateVisibleSynchronization = () => {
 }
 
 const page = ref(1)
-const pageSize = ref(10)
+const page_size = ref(10)
 const total = ref(0)
 const friendLinkTableData = ref<FriendLink[]>()
 
@@ -186,7 +186,7 @@ const friendLinkListRequest = reactive<FriendLinkListRequest>({
   name: null,
   description: null,
   page: 1,
-  pageSize: 10,
+  page_size: 10,
 })
 
 const route = useRoute();
@@ -196,7 +196,7 @@ onMounted(() => {
   friendLinkListRequest.name = route.query.name as string || null;
   friendLinkListRequest.description = route.query.description as string || null;
   friendLinkListRequest.page = Number(route.query.page) || 1;
-  friendLinkListRequest.pageSize = Number(route.query.pageSize) || 10;
+  friendLinkListRequest.page_size = Number(route.query.page_size) || 10;
 });
 
 const getFriendLinkTableData = async () => {
@@ -208,7 +208,7 @@ const getFriendLinkTableData = async () => {
   }
 
   friendLinkListRequest.page = page.value;
-  friendLinkListRequest.pageSize = pageSize.value;
+  friendLinkListRequest.page_size = page_size.value;
 
   const table = await friendLinkList(friendLinkListRequest);
 
@@ -222,7 +222,7 @@ const getFriendLinkTableData = async () => {
         name: friendLinkListRequest.name,
         description: friendLinkListRequest.description,
         page: friendLinkListRequest.page,
-        pageSize: friendLinkListRequest.pageSize,
+        page_size: friendLinkListRequest.page_size,
       },
     })
   }
@@ -233,7 +233,7 @@ nextTick(() => {
 });
 
 const handleSizeChange = (val: number) => {
-  pageSize.value = val
+  page_size.value = val
   getFriendLinkTableData()
 }
 
@@ -311,7 +311,7 @@ watch(() => route.query, (newQuery) => {
   friendLinkListRequest.name = newQuery.name as string || null;
   friendLinkListRequest.description = newQuery.description as string || null;
   friendLinkListRequest.page = Number(newQuery.page) || 1;
-  friendLinkListRequest.pageSize = Number(newQuery.pageSize) || 10;
+  friendLinkListRequest.page_size = Number(newQuery.page_size) || 10;
 }, {immediate: true});
 </script>
 
