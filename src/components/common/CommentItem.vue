@@ -25,7 +25,7 @@
             <el-button v-if="replyFlag===item.id" type="primary" @click="submitReply(item);content=''">确定</el-button>
             <el-button v-if="replyFlag===item.id" @click="content='';replyFlag=0">取消</el-button>
             <el-button v-if="!(replyFlag===item.id)" type="primary" @click="replyFlag=item.id">回复</el-button>
-            <el-button v-if="item.user_uuid===userStore.state.userInfo.uuid&&!(replyFlag===item.id)" type="danger"
+            <el-button v-if="(item.user_uuid===userStore.state.userInfo.uuid||userStore.isAdmin)&&!(replyFlag===item.id)" type="danger"
                        @click="handleDelete(item.id)">
               删除
             </el-button>

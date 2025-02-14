@@ -42,7 +42,7 @@
       <el-table-column prop="address" label="地址"/>
       <el-table-column label="注册时间" width="250px">
         <template #default="scope:{ row: User, column: any, $index: number }">
-          {{ scope.row.created_at }}
+          {{ getTime(scope.row.created_at) }}
         </template>
       </el-table-column>
       <el-table-column label="角色">
@@ -138,6 +138,11 @@ onMounted(() => {
   page.value = Number(route.query.page) || 1
   page_size.value = Number(route.query.page_size) || 10
 })
+
+const getTime = (date: Date): string => {
+  const time = new Date(date)
+  return time.toLocaleString()
+}
 
 const getUserTableData = async () => {
   if (userListRequest.uuid === "") {
