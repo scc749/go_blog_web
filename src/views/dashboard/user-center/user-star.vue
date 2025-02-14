@@ -64,8 +64,8 @@ const route = useRoute()
 const router = useRouter()
 
 onMounted(() => {
-  articleLikesListRequest.page = Number(route.query.page) || 1
-  articleLikesListRequest.page_size = Number(route.query.page_size) || 10
+  page.value = Number(route.query.page) || 1
+  page_size.value = Number(route.query.page_size) || 10
 })
 
 const getArticleLikesListData = async () => {

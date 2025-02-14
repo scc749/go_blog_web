@@ -217,8 +217,8 @@ onMounted(() => {
   articleListRequest.title = route.query.title as string || null
   articleListRequest.category = route.query.category as string || null
   articleListRequest.abstract = route.query.abstract as string || null
-  articleListRequest.page = Number(route.query.page) || 1
-  articleListRequest.page_size = Number(route.query.page_size) || 10
+  page.value = Number(route.query.page) || 1
+  page_size.value = Number(route.query.page_size) || 10
 })
 
 const getArticleTableData = async () => {

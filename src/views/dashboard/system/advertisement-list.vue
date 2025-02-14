@@ -208,8 +208,8 @@ const router = useRouter()
 onMounted(() => {
   advertisementListRequest.title = route.query.title as string || null
   advertisementListRequest.content = route.query.content as string || null
-  advertisementListRequest.page = Number(route.query.page) || 1
-  advertisementListRequest.page_size = Number(route.query.page_size) || 10
+  page.value = Number(route.query.page) || 1
+  page_size.value = Number(route.query.page_size) || 10
 })
 
 const getAdvertisementTableData = async () => {

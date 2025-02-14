@@ -88,8 +88,8 @@ const router = useRouter()
 
 onMounted(() => {
   userLoginListRequest.uuid = route.query.uuid as string || null
-  userLoginListRequest.page = Number(route.query.page) || 1
-  userLoginListRequest.page_size = Number(route.query.page_size) || 10
+  page.value = Number(route.query.page) || 1
+  page_size.value = Number(route.query.page_size) || 10
 })
 
 const getUserLoginTableData = async () => {

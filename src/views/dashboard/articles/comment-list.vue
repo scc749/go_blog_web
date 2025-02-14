@@ -169,8 +169,8 @@ onMounted(() => {
   commentListRequest.article_id = route.query.article_id as string || null
   commentListRequest.user_uuid = route.query.user_uuid as string || null
   commentListRequest.content = route.query.content as string || null
-  commentListRequest.page = Number(route.query.page) || 1
-  commentListRequest.page_size = Number(route.query.page_size) || 10
+  page.value = Number(route.query.page) || 1
+  page_size.value = Number(route.query.page_size) || 10
 })
 
 const getCommentTableData = async () => {

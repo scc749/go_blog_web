@@ -195,8 +195,8 @@ const router = useRouter();
 onMounted(() => {
   friendLinkListRequest.name = route.query.name as string || null;
   friendLinkListRequest.description = route.query.description as string || null;
-  friendLinkListRequest.page = Number(route.query.page) || 1;
-  friendLinkListRequest.page_size = Number(route.query.page_size) || 10;
+  page.value = Number(route.query.page) || 1;
+  page_size.value = Number(route.query.page_size) || 10;
 });
 
 const getFriendLinkTableData = async () => {

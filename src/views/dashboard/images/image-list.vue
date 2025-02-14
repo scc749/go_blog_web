@@ -230,8 +230,8 @@ onMounted(() => {
   imageListRequest.name = route.query.name as string || null
   imageListRequest.category = route.query.category as string || null
   imageListRequest.storage = route.query.storage as string || null
-  imageListRequest.page = Number(route.query.page) || 1
-  imageListRequest.page_size = Number(route.query.page_size) || 10
+  page.value = Number(route.query.page) || 1
+  page_size.value = Number(route.query.page_size) || 10
 })
 
 const getImageTableData = async () => {

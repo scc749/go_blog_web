@@ -172,8 +172,8 @@ onMounted(() => {
   articleSearchRequest.tag = route.query.tag as string || ""
   articleSearchRequest.sort = route.query.sort as string || ""
   articleSearchRequest.order = route.query.order as string || "desc"
-  articleSearchRequest.page = Number(route.query.page) || 1
-  articleSearchRequest.page_size = Number(route.query.page_size) || 10
+  page.value = Number(route.query.page) || 1
+  page_size.value = Number(route.query.page_size) || 10
 })
 
 

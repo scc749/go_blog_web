@@ -161,8 +161,8 @@ const route = useRoute()
 const router = useRouter()
 
 onMounted(() => {
-  feedbackListRequest.page = Number(route.query.page) || 1
-  feedbackListRequest.page_size = Number(route.query.page_size) || 10
+  page.value = Number(route.query.page) || 1
+  page_size.value = Number(route.query.page_size) || 10
 })
 
 const getFeedbackTableData = async () => {
