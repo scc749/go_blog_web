@@ -3,7 +3,7 @@
     <el-row class="title">独家推广</el-row>
     <el-carousel :interval="5000" type="card" height="320px">
       <el-carousel-item v-for="advertisement in advertisementList" :key="advertisement">
-        <el-image :src=advertisement.ad_image alt=""></el-image>
+        <el-image :src=advertisement.ad_image alt="" @click=handleAdverisementClick(advertisement)></el-image>
         <el-row>{{ advertisement.title }}</el-row>
         <el-text>{{ advertisement.content }}</el-text>
       </el-carousel-item>
@@ -23,6 +23,10 @@ const getAdvertisementList = async () => {
   }
 }
 getAdvertisementList()
+
+const handleAdverisementClick = (advertisement: Advertisement) => {
+  window.open(advertisement.link)
+}
 </script>
 
 <style scoped lang="scss">
