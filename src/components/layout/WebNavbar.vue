@@ -1,7 +1,7 @@
 <template>
   <div :class="{'web-navbar': true,show: isShow}">
     <div class="container">
-      <logo/>
+      <logo class="web-logo"/>
       <div class="web-menu">
         <el-menu mode="horizontal" :ellipsis="false" :router="true" :default-active="$route.path">
           <template v-for="item in menuList">

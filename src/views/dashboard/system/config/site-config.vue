@@ -296,7 +296,7 @@
         <div class="content">
           <template v-for="item in carouselList">
             <div class="carousel-item">
-              <el-image :src="item" alt=""/>
+              <el-image :src="item" alt="" loading="lazy"/>
               <el-button icon="Delete" type="danger" @click="cancelCarousel(item)"/>
             </div>
           </template>

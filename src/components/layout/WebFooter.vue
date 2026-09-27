@@ -5,7 +5,7 @@
         <div class="full-logo">
           <el-image
               :src="websiteStore.state.websiteInfo.full_logo===''?'/image/full_logo.png':websiteStore.state.websiteInfo.full_logo"
-              alt=""/>
+              alt="" loading="lazy"/>
         </div>
         <el-text>{{ websiteStore.state.websiteInfo.description }}</el-text>
       </div>
@@ -19,7 +19,7 @@
           <el-text>建站日期：{{ websiteStore.state.websiteInfo.created_at }} 网站已运行：{{ elapsedTime }}</el-text>
         </div>
         <div class="filing">
-          <el-image src="/image/filing.png" alt=""/>
+          <el-image src="/image/filing.png" alt="" loading="lazy"/>
           <el-link href="https://beian.miit.gov.cn/#/Integrated/index" :underline="false">
             {{ websiteStore.state.websiteInfo.icp_filing }}
           </el-link>
@@ -34,13 +34,13 @@
           </div>
           <div class="social-link">
             <el-link v-for="socialLink in socialLinks" :href=socialLink.url :underline="false">
-              <el-image :src=socialLink.src :alt=socialLink.alt></el-image>
+              <el-image :src=socialLink.src :alt=socialLink.alt loading="lazy"></el-image>
             </el-link>
           </div>
         </div>
       </div>
       <div class="footer-right">
-        <el-image src="/image/xiaochun_character_transparent.png" alt=""/>
+        <el-image src="/image/xiaochun_character_transparent.png" alt="" loading="lazy"/>
       </div>
     </div>
   </div>

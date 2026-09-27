@@ -18,7 +18,7 @@
                 <el-table-column label="序号" prop="index" width="60"/>
                 <el-table-column label="图片" width="240">
                   <template #default="scope:{ row: any, column: any, $index: number }">
-                    <el-image style="width: 180px; height: 100px" :src="scope.row.image" alt="" fit="cover"/>
+                    <el-image style="width: 180px; height: 100px" :src="scope.row.image" alt="" fit="cover" loading="lazy"/>
                   </template>
                 </el-table-column>
                 <el-table-column label="内容">

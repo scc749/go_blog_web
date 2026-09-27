@@ -8,11 +8,11 @@
       <el-row>邮箱：{{ websiteStore.state.websiteInfo.email }}</el-row>
       <div class="contact">
         <div v-if="websiteStore.state.websiteInfo['qq_image']!==''">
-          <el-image :src="websiteStore.state.websiteInfo['qq_image']" alt=""/>
+          <el-image :src="websiteStore.state.websiteInfo['qq_image']" alt="" loading="lazy"/>
           <el-row>QQ</el-row>
         </div>
         <div v-if="websiteStore.state.websiteInfo['wechat_image']!==''">
-          <el-image :src="websiteStore.state.websiteInfo['wechat_image']" alt=""/>
+          <el-image :src="websiteStore.state.websiteInfo['wechat_image']" alt="" loading="lazy"/>
           <el-row>微信</el-row>
         </div>
       </div>

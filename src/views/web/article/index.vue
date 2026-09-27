@@ -31,6 +31,7 @@
                   <template #default>
                     <el-image
                         v-for="number in numbers"
+                        loading="lazy"
                         :src="'/emoji/xiaochun_emoji_'+number+'.png'"
                         @click="content=content+'![]('+'/emoji/xiaochun_emoji_'+number+'.png'+')'"
                     />

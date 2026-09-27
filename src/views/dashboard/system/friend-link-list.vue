@@ -67,7 +67,7 @@
       <el-table-column type="selection" width="60"/>
       <el-table-column label="Logo">
         <template #default="scope:{ row: any, column: any, $index: number }">
-          <el-image :src="scope.row.logo" alt=""/>
+          <el-image :src="scope.row.logo" alt="" loading="lazy"/>
         </template>
       </el-table-column>
       <el-table-column prop="link" label="链接"/>

@@ -1,7 +1,9 @@
 <template>
   <div class="logo">
     <el-image
+        class="logo-image"
         :src="websiteStore.state.websiteInfo.logo===''?'/image/logo.png':websiteStore.state.websiteInfo.logo"
+        fit="contain"
         alt=""/>
     <div class="brand-info">
       <div>{{ websiteStore.state.websiteInfo.slogan }}</div>
@@ -58,15 +60,29 @@ const websiteStore = useWebsiteStore()
 }
 
 
-.web-navbar .logo {
+.logo.web-logo {
   display: flex;
+  min-width: 0;
+  overflow: hidden;
 
-  .el-image {
+  .logo-image {
+    flex: 0 0 60px;
+    width: 60px;
+    height: 60px;
     padding: 5px;
   }
 
   .brand-info {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow: hidden;
     margin-top: 5px;
+
+    > div {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
     > div:nth-child(1) {
       font-size: 22px;

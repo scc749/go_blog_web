@@ -73,7 +73,7 @@
       <el-table-column type="selection" :selectable="selectable" width="60"/>
       <el-table-column label="图片" width="100">
         <template #default="scope:{ row: Image, column: any, $index: number }">
-          <el-image :src="scope.row.url" alt=""/>
+          <el-image :src="scope.row.url" alt="" loading="lazy"/>
         </template>
       </el-table-column>
       <el-table-column prop="name" label="名称" width="320"/>

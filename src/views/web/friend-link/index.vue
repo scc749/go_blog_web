@@ -8,7 +8,7 @@
           <div class="list">
             <el-card v-for="item in friendLinkList" @click="handleFriendLinkJumps(item.link)">
               <div class="logo">
-                <el-image style="width: 64px; height: 64px" :src="item.logo" alt=""></el-image>
+                <el-image style="width: 64px; height: 64px" :src="item.logo" alt="" loading="lazy"></el-image>
                 <el-row class="name">{{ item.name }}</el-row>
               </div>
               <div class="description">

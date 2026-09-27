@@ -6,7 +6,7 @@ import {useLayoutStore} from "@/stores/layout";
 
 const service = axios.create({
     baseURL: import.meta.env.VITE_BASE_API,
-    timeout: 10000,
+    timeout: 20000,
 })
 
 export interface ApiResponse<T> {

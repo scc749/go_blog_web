@@ -7,7 +7,7 @@
     >
       <el-table-column label="封面" width="100">
         <template #default="scope:{ row: Hit<Article>, column: any, $index: number }">
-          <el-image :src="scope.row._source.cover" alt=""/>
+          <el-image :src="scope.row._source.cover" alt="" loading="lazy"/>
         </template>
       </el-table-column>
       <el-table-column prop="_source.title" label="标题" width="120"/>

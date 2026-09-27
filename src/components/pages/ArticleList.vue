@@ -46,7 +46,7 @@
     <el-table :data="articleTableData" :show-header="false" :row-style="{height: '150px'}">
       <el-table-column label="cover" width="200">
         <template #default="scope:{ row: any, column: any, $index: number }">
-          <el-image style="width: 160px; height: 100px" :src="scope.row._source.cover" alt=""/>
+          <el-image style="width: 160px; height: 100px" :src="scope.row._source.cover" alt="" loading="lazy"/>
         </template>
       </el-table-column>
       <el-table-column label="description">

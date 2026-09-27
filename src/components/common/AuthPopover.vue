@@ -99,7 +99,7 @@
             <el-divider>快速登录</el-divider>
             <div class="oauth-login">
               <div class="login-item">
-                <el-image class="qq-login" src="/image/qq_symbol.jpg" alt="" @click="qqLogin"/>
+                <el-image class="qq-login" src="/image/qq_symbol.jpg" alt="" loading="lazy" @click="qqLogin"/>
                 QQ登录
               </div>
             </div>
